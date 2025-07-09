@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+.venv/
+db.sqlite3
+
+# Django migrations
+**/migrations/*.py
+**/migrations/__pycache__/
+
+# Node
+node_modules/
+dist/
+build/
+
+# React
+frontend/.next/
+frontend/build/
+frontend/.env.local
+
+# VS Code / PyCharm
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

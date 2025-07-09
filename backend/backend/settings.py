@@ -53,6 +53,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'core.authentication.ClerkJWTAuthentication',
+    ],
+}
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [

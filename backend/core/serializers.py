@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Game, Genre, Platform
+from .models import Game, Genre, Platform, GameLog
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -30,3 +30,12 @@ class GameSerializer(serializers.ModelSerializer):
         data['genre'] = GenreSerializer(instance.genre.all(), many=True).data
         data['platform'] = PlatformSerializer(instance.platform.all(), many=True).data
         return data
+
+
+class GameLogSerializer(serializers.ModelSerializer):
+    game = serializers.PrimaryKeyRelatedField(queryset=Game.objects.all())
+
+    class Meta:
+        model = GameLog
+        fields = '__all__'
+        read_only_fields = ['id', 'created_at', 'updated_at']

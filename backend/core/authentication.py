@@ -35,7 +35,7 @@ class ClerkJWTAuthentication(BaseAuthentication):
                 algorithms=["RS256"],
                 audience=CLERK_AUDIENCE,
                 issuer=CLERK_ISSUER,
-                options={"verify_aud": True}
+                options={"verify_aud": False}
             )
         except Exception as e:
             raise AuthenticationFailed("Invalid JWT") from e

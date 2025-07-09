@@ -54,9 +54,9 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'core.authentication.ClerkJWTAuthentication',
-    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "core.authentication.ClerkJWTAuthentication",
+    ]
 }
 
 ROOT_URLCONF = 'backend.urls'
@@ -93,6 +93,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'core.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

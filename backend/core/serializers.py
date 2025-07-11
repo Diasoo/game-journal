@@ -34,8 +34,15 @@ class GameSerializer(serializers.ModelSerializer):
 
 class GameLogSerializer(serializers.ModelSerializer):
     game = serializers.PrimaryKeyRelatedField(queryset=Game.objects.all())
+    playthrough_type_display = serializers.CharField(source='get_playthrough_type_display', read_only=True)
+    status_display = serializers.CharField(source='get_status_display', read_only=True)
 
     class Meta:
         model = GameLog
         fields = '__all__'
         read_only_fields = ['id', 'created_at', 'updated_at']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['game'] = GameSerializer(instance.game).data
+        return data

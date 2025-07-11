@@ -7,7 +7,7 @@ from core.models import User
 
 CLERK_ISSUER = "https://vital-krill-99.clerk.accounts.dev"
 CLERK_JWKS_URL = f"{CLERK_ISSUER}/.well-known/jwks.json"
-CLERK_AUDIENCE = "pk_test_dml0YWwta3JpbGwtOTkuY2xlcmsuYWNjb3VudHMuZGV2JA"
+CLERK_AUDIENCE = "your-backend"
 
 _jwks_cache = None
 
@@ -35,7 +35,7 @@ class ClerkJWTAuthentication(BaseAuthentication):
                 algorithms=["RS256"],
                 audience=CLERK_AUDIENCE,
                 issuer=CLERK_ISSUER,
-                options={"verify_aud": False}
+                options={"verify_aud": True}
             )
         except Exception as e:
             raise AuthenticationFailed("Invalid JWT") from e

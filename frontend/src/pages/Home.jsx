@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
+import { SignedIn } from '@clerk/clerk-react';
 import { useUser } from '@clerk/clerk-react';
 import MyComponent from "../components/Component.jsx";
 

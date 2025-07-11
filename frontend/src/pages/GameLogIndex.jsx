@@ -17,7 +17,7 @@ export default function GameLogList() {
                 setError(err.message);
             })
             .finally(() => setLoading(false));
-    }, [api]);
+    }, []);
 
     if (loading) return <Loader />;
     if (error) return <div className="text-red-500">❌ {error}</div>;

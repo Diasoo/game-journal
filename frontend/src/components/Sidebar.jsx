@@ -9,7 +9,7 @@ export default function Sidebar() {
 
             <nav className="flex flex-col gap-2">
                 <Link to="/" className="hover:text-blue-400">Home</Link>
-                <Link to="/game-log" className="hover:text-blue-400">Game Log</Link>
+                <Link to="/game-logs" className="hover:text-blue-400">Game Log</Link>
             </nav>
 
             <div className="mt-auto pt-4 border-t border-gray-700">

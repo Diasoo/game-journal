@@ -40,9 +40,18 @@ class GameLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = GameLog
         fields = '__all__'
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'user', 'playthrough_type_display', 'status_display']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data['game'] = GameSerializer(instance.game).data
         return data
+
+    def create(self, validated_data):
+        validated_data["user"] = self.context["request"].user
+        print("Authenticated user:", self.context["request"].user)
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data["user"] = self.context["request"].user
+        return super().update(instance, validated_data)

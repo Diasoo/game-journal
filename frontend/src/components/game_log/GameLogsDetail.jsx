@@ -13,13 +13,13 @@ export default function GameLogsDetail() {
 
     useEffect(() => {
         api.get(`/game_logs/${id}/`)
-            .then(setGameLog)
+            .then((res) => setGameLog(res.data))
             .catch((err) => {
-                console.error("Chyba při načítání:", err);
+                console.error("Error when loading:", err);
                 setError(err.message);
         })
             .finally(() => setLoading(false));
-    }, [id, api]);
+    }, [id]);
 
     if (loading) return <Loader />;
     if (error) return <div className="text-red-500">❌ {error}</div>;

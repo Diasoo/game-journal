@@ -4,7 +4,12 @@ import {useNavigate} from "react-router-dom";
 export default function GameLogsTable({ data }) {
     const navigate = useNavigate();
 
-    if (!data.length) return <p>Žádné záznamy nenalezeny.</p>;
+    function formatHours(hours) {
+        const num = parseFloat(hours);
+        return Number.isInteger(num) ? num.toString() : num.toFixed(1);
+    }
+
+    if (!data.length) return <p className="pt-16">No records</p>;
 
     return (
         <table className="min-w-full table-auto border-collapse border-2 border-neutral-600">
@@ -22,7 +27,7 @@ export default function GameLogsTable({ data }) {
                     <tr key={log.id} onClick={() => navigate(`/game-logs/${log.id}`)} className="hover:bg-gray-800 hover:cursor-pointer">
                         <td className="px-4 py-2 border border-neutral-600">{log.game.title}</td>
                         <td className="px-4 py-2 border border-neutral-600">{log.status_display}</td>
-                        <td className="px-4 py-2 border border-neutral-600">{log.hours_played} h</td>
+                        <td className="px-4 py-2 border border-neutral-600">{formatHours(log.hours_played)} h</td>
                         <td className="px-4 py-2 border border-neutral-600">{log.rating ?? "–"}</td>
                         <td className="px-4 py-2 border border-neutral-600">{log.playthrough_type_display}</td>
                     </tr>

@@ -8,8 +8,12 @@ export default function GameLogsForm() {
     const api = useApi();
     const navigate = useNavigate();
     const { id } = useParams();
-
     const [loading, setLoading] = useState(true);
+
+    const [sentState, setSent] = useState(false);
+    const [successState, setSuccess] = useState(false);
+    const [errorState, setError] = useState(null);
+
     const [games, setGames] = useState([]);
     const [gameLogs, setGameLogs] = useState({
         game: null,
@@ -36,37 +40,33 @@ export default function GameLogsForm() {
         { value: "completed", label: "Completed" },
     ];
 
-    const [sentState, setSent] = useState(false);
-    const [successState, setSuccess] = useState(false);
-    const [errorState, setError] = useState(null);
-
     useEffect(() => {
         api.get("/games/")
-            .then((games) => {
-                console.log("Hry z backendu:", games);
-                const gameOptions = games.map((game) => ({
+            .then((res) => {
+                console.log("Hry z backendu:", res.data);
+                const gameOptions = res.data.map((game) => ({
                     value: game.id,
                     label: game.title,
                 }));
                 setGames(gameOptions);
             })
             .catch((err) => {
-                setError("Nepodařilo se načíst hry");
+                setError("Games could not be loaded");
                 console.error(err);
             });
 
         if (id) {
             api.get(`/game_logs/${id}/`)
-                .then((data) => {
+                .then((gameLog) => {
                     setGameLogs({
-                        ...data,
-                        game: { value: data.game.id, label: data.game.title },
-                        status: data.status,
-                        playthrough_type: data.playthrough_type,
+                        ...gameLog.data,
+                        game: { value: gameLog.data.game.id, label: gameLog.data.game.title },
+                        status: gameLog.data.status,
+                        playthrough_type: gameLog.data.playthrough_type,
                     });
                 })
                 .catch((err) => {
-                    setError("Nepodařilo se načíst game log");
+                    setError("Game logs could not be loaded");
                     console.error(err);
                 })
                 .finally(() => setLoading(false));

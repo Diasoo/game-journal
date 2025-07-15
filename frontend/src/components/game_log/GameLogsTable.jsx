@@ -1,13 +1,9 @@
 import {useNavigate} from "react-router-dom";
+import formatHours from "../../utils/formatHours.js";
 
 
 export default function GameLogsTable({ data }) {
     const navigate = useNavigate();
-
-    function formatHours(hours) {
-        const num = parseFloat(hours);
-        return Number.isInteger(num) ? num.toString() : num.toFixed(1);
-    }
 
     if (!data.length) return <p className="pt-16">No records</p>;
 
@@ -25,7 +21,7 @@ export default function GameLogsTable({ data }) {
             <tbody className="text-neutral-200">
             {data.map((log) => (
                     <tr key={log.id} onClick={() => navigate(`/game-logs/${log.id}`)} className="hover:bg-gray-800 hover:cursor-pointer">
-                        <td className="px-4 py-2 border border-neutral-600">{log.game.title}</td>
+                        <td className="px-4 py-2 border border-neutral-600 ">{log.game.title}</td>
                         <td className="px-4 py-2 border border-neutral-600">{log.status_display}</td>
                         <td className="px-4 py-2 border border-neutral-600">{formatHours(log.hours_played)} h</td>
                         <td className="px-4 py-2 border border-neutral-600">{log.rating ?? "–"}</td>

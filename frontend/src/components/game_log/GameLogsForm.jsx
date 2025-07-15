@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import { useApi } from "../../utils/api.js";
 import Loader from "../Loader.jsx";
+import playthroughLabel from "../../utils/playthroughLabel.js";
 
 export default function GameLogsForm() {
     const api = useApi();
@@ -140,9 +141,7 @@ export default function GameLogsForm() {
                     </label>
                     <Select
                         options={playthroughOptions}
-                        value={playthroughOptions.find(
-                            (option) => option.value === gameLogs.playthrough_type
-                        )}
+                        value={playthroughLabel(gameLogs.playthrough_type)}
                         onChange={(option) =>
                             setGameLogs({ ...gameLogs, playthrough_type: option.value })
                         }

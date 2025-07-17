@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Loader from "../Loader.jsx";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useApi } from "../../utils/api.js";
+import ConfirmDeleteModal from "../ConfirmDeleteModal.jsx";
 import formatHours from "../../utils/formatHours.js";
 import formatDate from "../../utils/formatDate.js";
 import capitalizeWords from "../../utils/capitalizeWords.js";
@@ -12,12 +13,29 @@ export default function GameLogsDetail() {
   const [loading, setLoading] = useState(true);
   const [gameLog, setGameLog] = useState({});
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const playthroughOptions = [
     { value: "story", label: "Story" },
     { value: "story_side", label: "Story + Side Quests" },
     { value: "completionist", label: "Completionist" },
   ];
+
+  const handleDelete = (id) => {
+    setIsModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    try {
+      await api.delete(`/game_logs/${id}/`);
+      console.log("Odstranuji zaznam");
+      setIsModalOpen(false);
+      navigate("/game-logs");
+    } catch (err) {
+      console.log("Chyba pri mazani: ", err);
+    }
+  };
 
   useEffect(() => {
     api
@@ -45,6 +63,13 @@ export default function GameLogsDetail() {
         >
           Edit Game Log
         </Link>
+        <button onClick={() => handleDelete()}>Delete Game Log</button>
+        <ConfirmDeleteModal
+          name="Game Log"
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={confirmDelete}
+        />
       </div>
       <hr className="mb-4" />
       <ul className="mb-1">Rating: {gameLog.rating}</ul>
@@ -60,7 +85,7 @@ export default function GameLogsDetail() {
           (opt) => opt.value === gameLog.playthrough_type,
         )?.label || "-"}
       </ul>
-      <ul className="mb-1">Replayed: {gameLog.replay ? "YES" : "NO"}</ul>
+      <ul className="mb-1">Replayed: {gameLog.replay ? "Yes" : "No"}</ul>
     </div>
   );
 }

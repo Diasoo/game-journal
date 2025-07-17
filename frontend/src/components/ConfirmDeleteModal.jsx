@@ -8,9 +8,13 @@ import {
 
 export default function ConfirmDeleteModal({ name, open, onClose, onConfirm }) {
   return (
-    <Dialog open={open} handler={onClose}>
-      <DialogHeader>`Do you really want to delete the ${name}?`</DialogHeader>
-      <DialogBody>This action cannot be taken back!</DialogBody>
+    <Dialog open={open} handler={onClose} className="dark:bg-gray-900">
+      <DialogHeader className="text-white">
+        Do you really want to delete the {name}?
+      </DialogHeader>
+      <DialogBody className="text-white">
+        This action cannot be taken back!
+      </DialogBody>
       <DialogFooter>
         <Button variant="text" color="red" onClick={onClose} className="mr-1">
           <span>Cancel</span>

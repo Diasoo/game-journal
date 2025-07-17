@@ -4,6 +4,6 @@
 
 @layer base {
     body {
-        @apply font-sans bg-gray-950 text-gray-200;
+        @apply font-sans bg-gray-900 text-gray-200;
     }
 }

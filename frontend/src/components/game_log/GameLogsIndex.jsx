@@ -15,22 +15,24 @@ export default function GameLogList() {
             .then((res) => setLogs(res.data))
             .catch((err) => {
                 console.log(err);
-                setError("Failed to load");
+                setError("Login or register to see your game logs. ");
             })
             .finally(() => setLoading(false));
     }, []);
 
 
 if (loading) return <Loader/>;
-if (error) return <div className="text-red-500">❌ {error}</div>;
+if (error) return <div className="text-red-500">{error}</div>;
 
 return (
     <div>
-        <h1 className="text-2xl font-bold mb-4 float-start">My Game Logs</h1>
-        <Link to="/game-logs/create"
-              className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded float-end">
-            Create New Game Log
-        </Link>
+        <div className="flex justify-between items-center mb-4">
+            <h1 className="text-2xl font-bold mb-4 float-start">My Game Logs</h1>
+            <Link to="/game-logs/create"
+                  className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded float-end">
+                Create New Game Log
+            </Link>
+        </div>
         <GameLogsTable data={logs}/>
 
     </div>

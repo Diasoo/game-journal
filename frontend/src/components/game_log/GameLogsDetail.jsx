@@ -22,7 +22,7 @@ export default function GameLogsDetail() {
     { value: "completionist", label: "Completionist" },
   ];
 
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     setIsModalOpen(true);
   };
 
@@ -53,17 +53,23 @@ export default function GameLogsDetail() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex mb-4 justify-between">
         <h1 className="text-2xl font-bold mb-4 float-left">
           {gameLog.game.title}
         </h1>
-        <Link
-          to={`/game-logs/edit/${gameLog.id}`}
-          className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded float-end"
-        >
-          Edit Game Log
-        </Link>
-        <button onClick={() => handleDelete()}>Delete Game Log</button>
+        <div>
+          <Link to={`/game-logs/edit/${gameLog.id}`}>
+            <button className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded h-8">
+              Edit Game Log
+            </button>
+          </Link>
+          <button
+            onClick={() => handleDelete()}
+            className="m-2 bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded h-8"
+          >
+            Delete Game Log
+          </button>
+        </div>
         <ConfirmDeleteModal
           name="Game Log"
           open={isModalOpen}
@@ -72,20 +78,28 @@ export default function GameLogsDetail() {
         />
       </div>
       <hr className="mb-4" />
-      <ul className="mb-1">Rating: {gameLog.rating}</ul>
-      <ul className="mb-1">
+      <ul className="mb-1 text-gray-200">Rating: {gameLog.rating}</ul>
+      <ul className="mb-1 text-gray-200">
         Hours played: {formatHours(gameLog.hours_played)}
       </ul>
-      <ul className="mb-1">Started at: {formatDate(gameLog.started_at)}</ul>
-      <ul className="mb-1">Finished at: {formatDate(gameLog.finished_at)}</ul>
-      <ul className="mb-1">Status: {capitalizeWords(gameLog.status)}</ul>
-      <ul className="mb-1">
+      <ul className="mb-1 text-gray-200">
+        Started at: {formatDate(gameLog.started_at)}
+      </ul>
+      <ul className="mb-1 text-gray-200">
+        Finished at: {formatDate(gameLog.finished_at)}
+      </ul>
+      <ul className="mb-1 text-gray-200">
+        Status: {capitalizeWords(gameLog.status)}
+      </ul>
+      <ul className="mb-1 text-gray-200">
         Type of playthrough:{" "}
         {playthroughOptions.find(
           (opt) => opt.value === gameLog.playthrough_type,
         )?.label || "-"}
       </ul>
-      <ul className="mb-1">Replayed: {gameLog.replay ? "Yes" : "No"}</ul>
+      <ul className="mb-1 text-gray-200">
+        Replayed: {gameLog.replay ? "Yes" : "No"}
+      </ul>
     </div>
   );
 }

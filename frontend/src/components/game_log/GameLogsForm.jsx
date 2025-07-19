@@ -126,7 +126,7 @@ export default function GameLogsForm() {
         {id ? "Edit Game Log" : "Add Game Log"}
       </h1>
 
-      <form onSubmit={handleSubmit} className="bg-neutral-900 p-4 rounded-lg">
+      <form onSubmit={handleSubmit} className="bg-gray-900 p-4 rounded-lg">
         <div className="mb-4">
           <label htmlFor="game" className="block mb-1 font-medium">
             Game
@@ -136,7 +136,7 @@ export default function GameLogsForm() {
             value={gameLogs.game}
             onChange={(option) => setGameLogs({ ...gameLogs, game: option })}
             placeholder="Choose a game..."
-            className="text-black bg-neutral-600"
+            className="text-black bg-gray-600"
           />
         </div>
 
@@ -153,7 +153,7 @@ export default function GameLogsForm() {
               setGameLogs({ ...gameLogs, playthrough_type: option.value })
             }
             placeholder="Choose a playstyle..."
-            className="text-black bg-neutral-600"
+            className="text-black bg-gray-600"
           />
         </div>
 
@@ -168,7 +168,7 @@ export default function GameLogsForm() {
             onChange={(e) =>
               setGameLogs({ ...gameLogs, hours_played: e.target.value })
             }
-            className="w-full p-2 rounded bg-neutral-600 text-white"
+            className="w-full p-2 rounded bg-gray-600 text-white"
           />
         </div>
 
@@ -186,7 +186,7 @@ export default function GameLogsForm() {
             onChange={(e) =>
               setGameLogs({ ...gameLogs, rating: e.target.value })
             }
-            className="w-full p-2 rounded bg-neutral-600 text-white"
+            className="w-full p-2 rounded bg-gray-600 text-white"
           />
         </div>
 
@@ -201,7 +201,7 @@ export default function GameLogsForm() {
             onChange={(e) =>
               setGameLogs({ ...gameLogs, started_at: e.target.value })
             }
-            className="w-full p-2 rounded bg-neutral-600 text-white"
+            className="w-full p-2 rounded bg-gray-600 text-white"
           />
         </div>
 
@@ -216,7 +216,7 @@ export default function GameLogsForm() {
             onChange={(e) =>
               setGameLogs({ ...gameLogs, finished_at: e.target.value })
             }
-            className="w-full p-2 rounded bg-neutral-600 text-white"
+            className="w-full p-2 rounded bg-gray-600 text-white"
           />
         </div>
 
@@ -233,7 +233,7 @@ export default function GameLogsForm() {
               setGameLogs({ ...gameLogs, status: option.value })
             }
             placeholder="Choose a status..."
-            className="text-black bg-neutral-600"
+            className="text-black bg-gray-600"
           />
         </div>
 

@@ -164,6 +164,7 @@ export default function GameLogsForm() {
           <input
             id="hours_played"
             type="number"
+            min="0"
             value={gameLogs.hours_played}
             onChange={(e) =>
               setGameLogs({ ...gameLogs, hours_played: e.target.value })
@@ -181,7 +182,7 @@ export default function GameLogsForm() {
             type="number"
             min="0"
             max="10"
-            step="0.1"
+            step="1"
             value={gameLogs.rating}
             onChange={(e) =>
               setGameLogs({ ...gameLogs, rating: e.target.value })

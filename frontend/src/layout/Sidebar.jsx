@@ -14,6 +14,9 @@ export default function Sidebar() {
         <Link to="/game-logs" className="hover:bg-gray-700 rounded p-1 ps-2">
           Game Log
         </Link>
+        <Link to="/platforms" className="hover:bg-gray-700 rounded p-1 ps-2">
+          Platforms
+        </Link>
       </nav>
 
       <div className="mt-auto pt-4 border-t border-gray-700">

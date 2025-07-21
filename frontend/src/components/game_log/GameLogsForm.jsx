@@ -10,9 +10,9 @@ export default function GameLogsForm() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
 
-  const [sentState, setSent] = useState(false);
-  const [successState, setSuccess] = useState(false);
-  const [errorState, setError] = useState(null);
+  const [sent, setSent] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
 
   const [games, setGames] = useState([]);
   const [gameLogs, setGameLogs] = useState({
@@ -257,17 +257,15 @@ export default function GameLogsForm() {
           disabled={loading}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
         >
-          Uložit
+          Save
         </button>
       </form>
 
-      {sentState && successState && (
+      {sent && success && (
         <div className="text-green-400 mt-3">✅ Záznam úspěšně uložen.</div>
       )}
-      {sentState && !successState && (
-        <div className="text-red-400 mt-3">
-          ❌ Chyba při ukládání: {errorState}
-        </div>
+      {sent && !success && (
+        <div className="text-red-400 mt-3">❌ Chyba při ukládání: {error}</div>
       )}
     </div>
   );

@@ -60,14 +60,14 @@ export default function GameLogsDetail() {
         <div>
           <Link to={`/game-logs/edit/${gameLog.id}`}>
             <button className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded h-8">
-              Edit Game Log
+              ✏️ Edit Game Log
             </button>
           </Link>
           <button
             onClick={() => handleDelete()}
             className="m-2 bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded h-8"
           >
-            Delete Game Log
+            🗑️ Delete Game Log
           </button>
         </div>
         <ConfirmDeleteModal

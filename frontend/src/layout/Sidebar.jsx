@@ -9,13 +9,13 @@ export default function Sidebar() {
 
       <nav className="flex flex-col gap-2">
         <Link to="/" className="hover:bg-gray-700 rounded p-1 ps-2">
-          Home
+          🏠 Home
         </Link>
         <Link to="/game-logs" className="hover:bg-gray-700 rounded p-1 ps-2">
-          Game Log
+          🎮 Game Log
         </Link>
         <Link to="/platforms" className="hover:bg-gray-700 rounded p-1 ps-2">
-          Platforms
+          🖥️ Platforms
         </Link>
       </nav>
 
@@ -23,7 +23,7 @@ export default function Sidebar() {
         <SignedIn>
           <UserButton></UserButton>
           <SignOutButton className="m-2 bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded float-end">
-            Sign Out
+            🚪 Sign Out
           </SignOutButton>
         </SignedIn>
         <SignedOut>
@@ -31,13 +31,13 @@ export default function Sidebar() {
             to="/sign-in"
             className="m-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded float-end"
           >
-            Log In
+            🔑 Log In
           </Link>
           <Link
             to="/sign-up"
             className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded float-end"
           >
-            Sign Up
+            📝 Sign Up
           </Link>
         </SignedOut>
       </div>

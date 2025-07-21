@@ -6,6 +6,7 @@ import GameLogIndex from "./components/game_log/GameLogsIndex.jsx";
 import GameLogsForm from "./components/game_log/GameLogsForm.jsx";
 import GameLogsDetail from "./components/game_log/GameLogsDetail.jsx";
 import PlatformIndex from "./components/platforms/PlatformIndex.jsx";
+import PlatformForm from "./components/platforms/PlatformForm.jsx";
 
 export default function App() {
   return (
@@ -21,6 +22,8 @@ export default function App() {
           </Route>
           <Route path="/platforms">
             <Route index element={<PlatformIndex />} />
+            <Route path="create" element={<PlatformForm />} />
+            <Route path="edit/:id" element={<PlatformForm />} />
           </Route>
         </Route>
         <Route

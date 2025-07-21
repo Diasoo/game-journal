@@ -27,14 +27,15 @@ export default function GameLogList() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold mb-4 float-start">My Game Logs</h1>
+        <h1 className="text-2xl font-bold float-start">My Game Logs</h1>
         <Link
           to="/game-logs/create"
           className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded float-end"
         >
-          Create New Game Log
+          ➕ Create New Game Log
         </Link>
       </div>
+      <hr className="mb-4" />
       <GameLogsTable data={logs} />
     </div>
   );

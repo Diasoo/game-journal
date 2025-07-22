@@ -17,7 +17,6 @@ export default function PlatformForm() {
 
   useEffect(() => {
     if (id) {
-      // If editing, fetch the specific platform
       api
         .get(`/platforms/${id}`)
         .then((res) => {
@@ -29,7 +28,6 @@ export default function PlatformForm() {
         })
         .finally(() => setLoading(false));
     } else {
-      // If adding, just stop loading
       setLoading(false);
     }
   }, [id, api]);

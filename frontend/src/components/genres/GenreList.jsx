@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ConfirmDeleteModal from "../ConfirmDeleteModal.jsx";
 import { useApi } from "../../utils/api.js";
+import { Link } from "react-router-dom";
 
 export default function GenreList({ data, onDelete }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,9 +33,9 @@ export default function GenreList({ data, onDelete }) {
           <li key={genre.id} className="my-1 group flex">
             {genre.name}
             <div class="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <a href={`/genres/edit/${genre.id}`} className="ml-2">
+              <Link to={`/genres/edit/${genre.id}`} className="ml-2">
                 ✏️
-              </a>
+              </Link>
               <a
                 href="#"
                 onClick={(e) => {

@@ -2,19 +2,19 @@ import { useState } from "react";
 import { useApi } from "../../utils/api";
 import Loader from "../Loader";
 import { useEffect } from "react";
-import PlatformList from "./PlatformList.jsx";
+import GenreList from "./GenreList.jsx";
 import { Link } from "react-router-dom";
 
-export default function PlatformIndex() {
+export default function GenreIndex() {
   const api = useApi();
-  const [platforms, setPlatforms] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api
-      .get("/platforms")
-      .then((res) => setPlatforms(res.data))
+      .get("/genres")
+      .then((res) => setGenres(res.data))
       .catch((err) => {
         console.log(err);
         setError("Could not get the data.");
@@ -23,7 +23,7 @@ export default function PlatformIndex() {
   }, []);
 
   const handleDelete = (deletedId) => {
-    setPlatforms((prev) => prev.filter((p) => p.id !== deletedId));
+    setGenres((prev) => prev.filter((p) => p.id !== deletedId));
   };
 
   if (loading) return <Loader />;
@@ -32,16 +32,16 @@ export default function PlatformIndex() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl float-start font-bold">Platforms</h1>
+        <h1 className="text-2xl float-start font-bold">Genres</h1>
         <Link
-          to="/platforms/create"
+          to="/genres/create"
           className="m-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded float-end"
         >
-          ➕ Create New Platform
+          ➕ Create New Genre
         </Link>
       </div>
       <hr className="mb-4" />
-      <PlatformList data={platforms} onDelete={handleDelete} />
+      <GenreList data={genres} onDelete={handleDelete} />
     </div>
   );
 }

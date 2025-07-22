@@ -17,6 +17,9 @@ export default function Sidebar() {
         <Link to="/platforms" className="hover:bg-gray-700 rounded p-1 ps-2">
           🖥️ Platforms
         </Link>
+        <Link to="/genres" className="hover:bg-gray-700 rounded p-1 ps-2">
+          🏷️ Genres
+        </Link>
       </nav>
 
       <div className="mt-auto pt-4 border-t border-gray-700">

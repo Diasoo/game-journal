@@ -2,7 +2,7 @@ import { useState } from "react";
 import ConfirmDeleteModal from "../ConfirmDeleteModal.jsx";
 import { useApi } from "../../utils/api.js";
 
-export default function PlatformList({ data, onDelete }) {
+export default function GenreList({ data, onDelete }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const api = useApi();
@@ -14,7 +14,7 @@ export default function PlatformList({ data, onDelete }) {
 
   const confirmDelete = async () => {
     try {
-      await api.delete(`/platforms/${selectedId}/`);
+      await api.delete(`/genres/${selectedId}/`);
       console.log("Odstranuji zaznam");
       setIsModalOpen(false);
       if (onDelete) onDelete(selectedId);
@@ -28,18 +28,18 @@ export default function PlatformList({ data, onDelete }) {
   return (
     <>
       <ul>
-        {data.map((platform) => (
-          <li key={platform.id} className="my-1 group flex">
-            {platform.name}
+        {data.map((genre) => (
+          <li key={genre.id} className="my-1 group flex">
+            {genre.name}
             <div class="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <a href={`/platforms/edit/${platform.id}`} className="ml-2">
+              <a href={`/genres/edit/${genre.id}`} className="ml-2">
                 ✏️
               </a>
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleDelete(platform.id);
+                  handleDelete(genre.id);
                 }}
                 className="inline-flex items-center"
               >
@@ -50,7 +50,7 @@ export default function PlatformList({ data, onDelete }) {
         ))}
       </ul>
       <ConfirmDeleteModal
-        name="Platform"
+        name="Genre"
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={confirmDelete}

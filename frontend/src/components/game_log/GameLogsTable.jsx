@@ -8,7 +8,7 @@ export default function GameLogsTable({ data }) {
 
   return (
     <table className="min-w-full table-auto border-collapse border-2 border-gray-600">
-      <thead className="bg-gray-900 text-left uppercase text-gray-400">
+      <thead className="bg-gray-700 text-left uppercase text-gray-300">
         <tr>
           <th className="px-4 py-2 border border-gray-600">Game</th>
           <th className="px-4 py-2 border border-gray-600">Status</th>
@@ -22,7 +22,7 @@ export default function GameLogsTable({ data }) {
           <tr
             key={log.id}
             onClick={() => navigate(`/game-logs/${log.id}`)}
-            className="hover:bg-gray-800 hover:cursor-pointer"
+            className="hover:bg-gray-800 hover:cursor-pointer even:bg-black"
           >
             <td className="px-4 py-2 border border-gray-600 text-gray-200">
               {log.game.title}

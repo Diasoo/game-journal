@@ -32,7 +32,7 @@ export default function PlatformList({ data, onDelete }) {
         {data.map((platform) => (
           <li key={platform.id} className="my-1 group flex">
             {platform.name}
-            <div class="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <Link to={`/platforms/edit/${platform.id}`} className="ml-2">
                 ✏️
               </Link>

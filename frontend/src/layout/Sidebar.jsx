@@ -20,6 +20,9 @@ export default function Sidebar() {
         <Link to="/genres" className="hover:bg-gray-700 rounded p-1 ps-2">
           🏷️ Genres
         </Link>
+        <Link to="/games" className="hover:bg-gray-700 rounded p-1 ps-2">
+          🎮 Games
+        </Link>
       </nav>
 
       <div className="mt-auto pt-4 border-t border-gray-700">

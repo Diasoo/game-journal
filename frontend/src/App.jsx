@@ -9,6 +9,7 @@ import PlatformIndex from "./components/platforms/PlatformIndex.jsx";
 import PlatformForm from "./components/platforms/PlatformForm.jsx";
 import GenreForm from "./components/genres/GenreForm.jsx";
 import GenreIndex from "./components/genres/GenreIndex.jsx";
+import GameIndex from "./components/games/GameIndex.jsx";
 
 export default function App() {
   return (
@@ -31,6 +32,9 @@ export default function App() {
             <Route index element={<GenreIndex />} />
             <Route path="create" element={<GenreForm />} />
             <Route path="edit/:id" element={<GenreForm />} />
+          </Route>
+          <Route path="/games">
+            <Route index element={<GameIndex />} />
           </Route>
         </Route>
         <Route

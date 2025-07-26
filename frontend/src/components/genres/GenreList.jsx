@@ -32,7 +32,7 @@ export default function GenreList({ data, onDelete }) {
         {data.map((genre) => (
           <li key={genre.id} className="my-1 group flex">
             {genre.name}
-            <div class="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <Link to={`/genres/edit/${genre.id}`} className="ml-2">
                 ✏️
               </Link>

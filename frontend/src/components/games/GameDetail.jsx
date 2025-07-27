@@ -80,7 +80,7 @@ export default function GameDetail() {
         {game.genre.map((genre) => (
           <li
             key={genre.id}
-            className="bg-blue-200 text-blue-800 px-2 py-1 rounded m-1 w-40 inline-flex"
+            className="bg-blue-200 text-blue-800 px-2 py-1 rounded m-1 inline-flex"
           >
             {genre.name}
           </li>
@@ -91,7 +91,7 @@ export default function GameDetail() {
         {game.platform.map((platform) => (
           <li
             key={platform.id}
-            className="bg-green-200 text-green-800 px-2 py-1 rounded m-1 w-40 inline-flex"
+            className="bg-green-200 text-green-800 px-2 py-1 rounded m-1 inline-flex"
           >
             {platform.name}
           </li>

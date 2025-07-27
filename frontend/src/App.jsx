@@ -11,6 +11,7 @@ import GenreForm from "./components/genres/GenreForm.jsx";
 import GenreIndex from "./components/genres/GenreIndex.jsx";
 import GameIndex from "./components/games/GameIndex.jsx";
 import GameDetail from "./components/games/GameDetail.jsx";
+import GameForm from "./components/games/GameForm.jsx";
 
 export default function App() {
   return (
@@ -37,6 +38,8 @@ export default function App() {
           <Route path="/games">
             <Route index element={<GameIndex />} />
             <Route path=":id" element={<GameDetail />} />
+            <Route path="create" element={<GameForm />} />
+            <Route path="edit/:id" element={<GameForm />} />
           </Route>
         </Route>
         <Route

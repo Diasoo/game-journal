@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function GameLogList() {
   const api = useApi();
   const [logs, setLogs] = useState([]);
+  const [stats, setStats] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,9 +17,17 @@ export default function GameLogList() {
       .then((res) => setLogs(res.data))
       .catch((err) => {
         console.log(err);
-        setError("Login or register to see your game logs. ");
+        setError("Data could not be loaded.");
       })
       .finally(() => setLoading(false));
+
+    api
+      .get("/game_logs/stats")
+      .then((res) => setStats(res.data))
+      .catch((err) => {
+        console.log(err);
+        setError("Data could not be loaded.");
+      });
   }, []);
 
   if (loading) return <Loader />;
@@ -37,6 +46,10 @@ export default function GameLogList() {
       </div>
       <hr className="mb-4" />
       <GameLogsTable data={logs} />
+      <ul>
+        <li>{stats.average_hours_played}</li>
+        <li>{stats.total_logs}</li>
+      </ul>
     </div>
   );
 }

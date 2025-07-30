@@ -216,7 +216,7 @@ export default function GameForm() {
 
         <div className="mb-4">
           <label htmlFor="platform" className="block font-medium">
-            Genre
+            Platform
           </label>
           <Select
             id="platform"

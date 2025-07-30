@@ -47,8 +47,14 @@ export default function GameLogList() {
       <hr className="mb-4" />
       <GameLogsTable data={logs} />
       <ul>
-        <li>{stats.average_hours_played}</li>
-        <li>{stats.total_logs}</li>
+        <li>Number of logs: {stats.total_logs}</li>
+        <li>Total playtime: {stats.total_hours_played}</li>
+        <li>Average playtime: {stats.average_hours_played}</li>
+        <li>Average rating: {stats.average_rating}</li>
+        <li>Number of replays: {stats.replay_count}</li>
+        <li>Best rated game: {stats.best_rated_game.game} - {stats.best_rated_game.rating}</li>
+        <li>Worst rated game: {stats.worst_rated_game.game} - {stats.worst_rated_game.rating}</li>
+        <li>Most played game: {stats.most_hours_played.game} - {stats.most_hours_played.hours_played} h</li>
       </ul>
     </div>
   );

@@ -8,6 +8,7 @@ export default function GameLogList() {
   const api = useApi();
   const [logs, setLogs] = useState([]);
   const [stats, setStats] = useState({});
+  const [statsPerYear, setStatsPerYear] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +25,14 @@ export default function GameLogList() {
     api
       .get("/game_logs/stats")
       .then((res) => setStats(res.data))
+      .catch((err) => {
+        console.log(err);
+        setError("Data could not be loaded.");
+      });
+
+    api
+      .get("game_logs/stats/per_year")
+      .then((res) => setStatsPerYear(res.data))
       .catch((err) => {
         console.log(err);
         setError("Data could not be loaded.");
@@ -46,16 +55,37 @@ export default function GameLogList() {
       </div>
       <hr className="mb-4" />
       <GameLogsTable data={logs} />
+      <hr className="my-4" />
       <ul>
-        <li>Number of logs: {stats.total_logs}</li>
-        <li>Total playtime: {stats.total_hours_played}</li>
-        <li>Average playtime: {stats.average_hours_played}</li>
-        <li>Average rating: {stats.average_rating}</li>
-        <li>Number of replays: {stats.replay_count}</li>
-        <li>Best rated game: {stats.best_rated_game.game} - {stats.best_rated_game.rating}</li>
-        <li>Worst rated game: {stats.worst_rated_game.game} - {stats.worst_rated_game.rating}</li>
-        <li>Most played game: {stats.most_hours_played.game} - {stats.most_hours_played.hours_played} h</li>
+        <li className="mb-1 text-gray-200">
+          Number of logs: {stats.total_logs}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Total playtime: {stats.total_hours_played}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Average playtime: {stats.average_hours_played}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Average rating: {stats.average_rating}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Number of replays: {stats.replay_count}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Best rated game: {stats.best_rated_game.game} -{" "}
+          {stats.best_rated_game.rating}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Worst rated game: {stats.worst_rated_game.game} -{" "}
+          {stats.worst_rated_game.rating}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Most played game: {stats.most_hours_played.game} -{" "}
+          {stats.most_hours_played.hours_played} h
+        </li>
       </ul>
+      {statsPerYear.number_of_games}
     </div>
   );
 }

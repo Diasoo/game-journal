@@ -33,8 +33,27 @@ class GameLogViewSet(viewsets.ModelViewSet):
             "average_hours_played": round(df["hours_played"].mean(), 2),
             "average_rating": round(df["rating"].mean(), 2),
             "replay_count": df["replay"].sum(),
-            "best_rated_game": df.loc[df["rating"].idxmax(), ["game", "rating"]].to_dict(),
-            "worst_rated_game": df.loc[df["rating"].idxmin(), ["game", "rating"]].to_dict(),
-            "most_hours_played": df.loc[df["hours_played"].idxmax(), ["game", "hours_played"]].to_dict(),
+            "best_rated_game": df.loc[
+                df["rating"].idxmax(), ["game", "rating"]
+            ].to_dict(),
+            "worst_rated_game": df.loc[
+                df["rating"].idxmin(), ["game", "rating"]
+            ].to_dict(),
+            "most_hours_played": df.loc[
+                df["hours_played"].idxmax(), ["game", "hours_played"]
+            ].to_dict(),
         }
-        return Response(stats)
+        return Response(stats, status=200)
+
+    @action(detail=False, methods=["get"], url_path="stats/per_year")
+    def stats_per_year(self, request):
+        qs = self.queryset.filter(user=request.user)
+
+        if not qs.exists():
+            return Response({"message: No game sessions found."}, status=404)
+
+        df = read_frame(qs)
+        df["year"] = df["finished_at"].dt.year
+
+        stats = {"number_of_games": df.groupby("year")["id"].count().to_dict()}
+        return Response(stats, status=200)

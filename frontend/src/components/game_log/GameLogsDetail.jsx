@@ -78,27 +78,29 @@ export default function GameLogsDetail() {
         />
       </div>
       <hr className="mb-4" />
-      <ul className="mb-1 text-gray-200">Rating: {gameLog.rating}</ul>
-      <ul className="mb-1 text-gray-200">
-        Hours played: {formatHours(gameLog.hours_played)}
-      </ul>
-      <ul className="mb-1 text-gray-200">
-        Started at: {formatDate(gameLog.started_at)}
-      </ul>
-      <ul className="mb-1 text-gray-200">
-        Finished at: {formatDate(gameLog.finished_at)}
-      </ul>
-      <ul className="mb-1 text-gray-200">
-        Status: {capitalizeWords(gameLog.status)}
-      </ul>
-      <ul className="mb-1 text-gray-200">
-        Type of playthrough:{" "}
-        {playthroughOptions.find(
-          (opt) => opt.value === gameLog.playthrough_type,
-        )?.label || "-"}
-      </ul>
-      <ul className="mb-1 text-gray-200">
-        Replayed: {gameLog.replay ? "Yes" : "No"}
+      <ul>
+        <li className="mb-1 text-gray-200">Rating: {gameLog.rating}</li>
+        <li className="mb-1 text-gray-200">
+          Hours played: {formatHours(gameLog.hours_played)}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Started at: {formatDate(gameLog.started_at)}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Finished at: {formatDate(gameLog.finished_at)}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Status: {capitalizeWords(gameLog.status)}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Type of playthrough:{" "}
+          {playthroughOptions.find(
+            (opt) => opt.value === gameLog.playthrough_type,
+          )?.label || "-"}
+        </li>
+        <li className="mb-1 text-gray-200">
+          Replayed: {gameLog.replay ? "Yes" : "No"}
+        </li>
       </ul>
     </div>
   );

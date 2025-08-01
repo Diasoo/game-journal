@@ -2,6 +2,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_pandas.io import read_frame
+import pandas as pd
 
 from ..models import GameLog
 from ..serializers import GameLogSerializer
@@ -53,6 +54,7 @@ class GameLogViewSet(viewsets.ModelViewSet):
             return Response({"message: No game sessions found."}, status=404)
 
         df = read_frame(qs)
+        df["finished_at"] = pd.to_datetime(df["finished_at"])
         df["year"] = df["finished_at"].dt.year
 
         stats = {"number_of_games": df.groupby("year")["id"].count().to_dict()}

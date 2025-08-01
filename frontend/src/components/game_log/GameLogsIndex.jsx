@@ -31,11 +31,14 @@ export default function GameLogList() {
       });
 
     api
-      .get("game_logs/stats/per_year")
-      .then((res) => setStatsPerYear(res.data))
+      .get("/game_logs/stats/per_year")
+      .then((res) => {
+        setStatsPerYear(res.data);
+        console.log(statsPerYear, "tady");
+      })
       .catch((err) => {
-        console.log(err);
-        setError("Data could not be loaded.");
+        console.error("Error fetching per-year stats:", err);
+        // Do not set error here, so the main stats and logs can still display
       });
   }, []);
 
@@ -85,7 +88,6 @@ export default function GameLogList() {
           {stats.most_hours_played.hours_played} h
         </li>
       </ul>
-      {statsPerYear.number_of_games}
     </div>
   );
 }
